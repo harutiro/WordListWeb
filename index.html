@@ -20,9 +20,6 @@
     <!-- myJS -->
     <script type="text/javascript" src="todo.js"></script>
 
-    <!-- hamburgerMenu -->
-    <script type="text/javascript" src="/hamburgerMenu.js"></script>
-    <link rel="stylesheet" href="/hamburgerMenu.css">
 </head>
 
 <body onload="init();" class="min-vh-100">
@@ -57,15 +54,15 @@
             <grid class="container">
                 <row class="row justify-content-center">
                     <card class="card word-card text-center justify-content-center">
-                        <input type="text" class="form-control mb-2" placeholder="単語を入力してください">
-                        <input type="text" class="form-control mb-2" placeholder="意味を入力してください">
-                        <button class="btn btn-primary m-0">保存</button>
+                        <input type="text" id="write-text" class="form-control mb-2" placeholder="単語を入力してください">
+                        <input type="text" id="read-text" class="form-control mb-2" placeholder="意味を入力してください">
+                        <button id="save-button" class="btn btn-primary m-0">保存</button>
                     </card>
                 </row>
             </grid>
 
             <grid class="container">
-                <row class="row justify-content-center">
+                <row id="container-row" class="row justify-content-center">
 
                     <card class="card word-card text-center position-relative col-sm-6 col-md-3">
                         <div>
