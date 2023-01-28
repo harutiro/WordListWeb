@@ -85,7 +85,6 @@ class TodoList {
     //画面の表示だけよう
     viewItem(write , read , id){
         this.DOM.containerRow.appendChild(this._createItem(write , read , id));
-        wordList.push(new Word(id , write , read , "tag"));
     }
 
     // リストを削除
