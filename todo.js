@@ -1,3 +1,13 @@
+//データクラス
+function Word(_id , _write, _read , _tag) {
+    this.write = _write;
+    this.read = _read;
+    this.id = _id;
+    this.tag = _tag;
+}
+
+var wordList = [];
+
 // クラス
 class TodoList {
     // コンストラクタ
@@ -7,7 +17,7 @@ class TodoList {
 
     }
     // リストを生成
-    _createItem(write , read) {
+    _createItem(write , read , id) {
         const cardElm = document.createElement('card');
         const divWordElm = document.createElement('div');
         const pWriteElm = document.createElement('p');
@@ -17,9 +27,10 @@ class TodoList {
         const deleteIconElm = document.createElement('i');
         const editButtonElm = document.createElement('button');
         const editIconElm = document.createElement('i');
+        const idElm = document.createElement('id');
 
 
-        cardElm.classList.add('card', 'word-card', 'text-center', 'position-relative', 'col-sm-6', 'col-md-3');
+        cardElm.classList.add('card', 'word-card', 'text-center', 'position-relative', 'col-sm-6', 'col-md-3' , 'm-3');
         divWordElm.classList.add('word-card-text');
         pWriteElm.classList.add('h3');
         pWriteElm.innerText = write;
@@ -29,6 +40,8 @@ class TodoList {
         deleteIconElm.classList.add('fa', 'icon', 'fa-trash');
         editButtonElm.classList.add('btn', 'icon-button', 'position-absolute', 'end-0', 'm-2');
         editIconElm.classList.add('fa', 'icon', 'fa-edit');
+        idElm.innerText = id;
+        idElm.style.display = "none";
 
         // 完了ボタンクリック
         // TODO: 完了ボタンを押した時の処理
@@ -55,17 +68,35 @@ class TodoList {
         divButtonElm.appendChild(editButtonElm);
         cardElm.appendChild(divWordElm);
         cardElm.appendChild(divButtonElm);
+        cardElm.appendChild(idElm);
 
         return cardElm;
     }
-    // リストを追加
-    addItem(write , read) {
-        this.DOM.containerRow.appendChild(this._createItem(write , read));
+    // リストを新規追加
+    addItem(write , read , id) {
+        this.DOM.containerRow.appendChild(this._createItem(write , read , id));
+        wordList.push(new Word(id , write , read , "tag"));
+        console.log(wordList)
+        
+        localStorage.setItem("wordList", JSON.stringify(wordList));
+
+    }
+
+    //画面の表示だけよう
+    viewItem(write , read , id){
+        this.DOM.containerRow.appendChild(this._createItem(write , read , id));
+        wordList.push(new Word(id , write , read , "tag"));
     }
 
     // リストを削除
     deleteItem(target, domparent) {
         domparent.removeChild(target);
+        wordList = wordList.filter((word) => {
+            return word.id != target.querySelector("id").innerText;
+        });
+        localStorage.setItem("wordList", JSON.stringify(wordList));
+        console.log(wordList)
+
     }
 }
 
@@ -83,7 +114,7 @@ function addtodoEvent() {
 
     // インスタンス化
     const totoList = new TodoList();
-    totoList.addItem(writeItemTxt, readItemTxt);
+    totoList.addItem(writeItemTxt, readItemTxt, createUuid());
 }
 
 
@@ -105,6 +136,20 @@ function init() {
     // キーボードイベント
     document.addEventListener('keypress', keypress);
     const regexEnter = new RegExp('(=|Enter)');
+
+    // ローカルストレージからデータを取得
+    wordList = JSON.parse(localStorage.getItem("wordList"));
+    if (wordList == null) {
+        wordList = [];
+    }else{
+        console.log(wordList)
+        wordList.forEach((word) => {
+            const totoList = new TodoList();
+            totoList.viewItem(word.write, word.read, word.id);
+        });
+    }
+    
+
 
 }
 
