@@ -1,11 +1,3 @@
-//データクラス
-function Word(_id , _write, _read , _tag) {
-    this.write = _write;
-    this.read = _read;
-    this.id = _id;
-    this.tag = _tag;
-}
-
 var wordList = [];
 
 // クラス
@@ -116,25 +108,11 @@ function addtodoEvent() {
     totoList.addItem(writeItemTxt, readItemTxt, createUuid());
 }
 
-
-function keypress(e) {
-    // エンターが押されたら
-    if (regexEnter.test(e.key)) {
-        addtodoEvent();
-    } else {
-        return false;
-    }
-}
-
 function init() {
     // クリックイベント
     document.querySelector("#save-button").addEventListener('click', () => {
         addtodoEvent();
     });
-
-    // キーボードイベント
-    document.addEventListener('keypress', keypress);
-    const regexEnter = new RegExp('(=|Enter)');
 
     // ローカルストレージからデータを取得
     wordList = JSON.parse(localStorage.getItem("wordList"));
@@ -151,5 +129,3 @@ function init() {
 
 
 }
-
-//localStorage
