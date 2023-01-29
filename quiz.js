@@ -5,7 +5,7 @@ function fixQuestion(question) {
 
     let nearList = [question.read]
 
-    axios.get(`http://152.70.80.176:5001/near?get_number=50&str=${question.read}`)
+    axios.get(`https://word2vec.harutiro.net/near?get_number=50&str=${question.read}`)
         .then(response => {
             if ("OK" == response.data.status) {
                 nearList.push(response.data.data[Math.floor(Math.random() * 50)]);

@@ -96,7 +96,7 @@ function addtodoEvent() {
         return
     }
 
-    axios.get(`http://152.70.80.176:5001/near?get_number=50&str=${readItemTxt}`)
+    axios.get(`https://word2vec.harutiro.net/near?get_number=50&str=${readItemTxt}`)
         .then(response => {
             if ("OK" == response.data.status) {
                 // フォームの値をリセット
