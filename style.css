@@ -142,3 +142,41 @@ li p {
 .sidebar-item-checked {
     background: #d3b833;
 }
+
+/* quiz */
+
+.quiz-button {
+    font-family: 'Kosugi Maru';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 40px;
+    text-align: center;
+
+
+    width: 350px;
+    height: 116px;
+
+    background: #C0E9DF;
+    border-radius: 14px;
+}
+
+.quiz-text {
+    font-family: 'Kosugi Maru';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 128px;
+    line-height: 128px;
+    /* identical to box height */
+
+    text-align: center;
+}
+
+.quiz-ans-image {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
