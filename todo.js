@@ -9,7 +9,7 @@ class TodoList {
 
     }
     // リストを生成
-    _createItem(write , read , id) {
+    _createItem(write, read, id) {
         const cardElm = document.createElement('card');
         const divWordElm = document.createElement('div');
         const pWriteElm = document.createElement('p');
@@ -22,7 +22,7 @@ class TodoList {
         const idElm = document.createElement('id');
 
 
-        cardElm.classList.add('card', 'word-card', 'text-center', 'position-relative', 'col-sm-6', 'col-md-3' , 'm-3');
+        cardElm.classList.add('card', 'word-card', 'text-center', 'position-relative', 'col-sm-6', 'col-md-3', 'm-3');
         divWordElm.classList.add('word-card-text');
         pWriteElm.classList.add('h3');
         pWriteElm.innerText = write;
@@ -65,18 +65,18 @@ class TodoList {
         return cardElm;
     }
     // リストを新規追加
-    addItem(write , read , id) {
-        this.DOM.containerRow.appendChild(this._createItem(write , read , id));
-        wordList.push(new Word(id , write , read , "tag"));
+    addItem(write, read, id) {
+        this.DOM.containerRow.appendChild(this._createItem(write, read, id));
+        wordList.push(new Word(id, write, read, "tag"));
         console.log(wordList)
-        
+
         localStorage.setItem("wordList", JSON.stringify(wordList));
 
     }
 
     //画面の表示だけよう
-    viewItem(write , read , id){
-        this.DOM.containerRow.appendChild(this._createItem(write , read , id));
+    viewItem(write, read, id) {
+        this.DOM.containerRow.appendChild(this._createItem(write, read, id));
     }
 
     // リストを削除
@@ -99,13 +99,24 @@ function addtodoEvent() {
         alert("値を入力してください");
         return
     }
-    // フォームの値をリセット
-    document.querySelector("#write-text").value = "";
-    document.querySelector("#read-text").value = "";
 
-    // インスタンス化
-    const totoList = new TodoList();
-    totoList.addItem(writeItemTxt, readItemTxt, createUuid());
+    axios.get(`http://152.70.80.176:5001/near?get_number=50&str=${readItemTxt}`)
+        .then(response => {
+            if ("OK" == response.data.status) {
+                // フォームの値をリセット
+                document.querySelector("#write-text").value = "";
+                document.querySelector("#read-text").value = "";
+
+                // インスタンス化
+                const totoList = new TodoList();
+                totoList.addItem(writeItemTxt, readItemTxt, createUuid());
+            } else {
+                alert("問題の自動生成に使えない単語です、他の単語を入力してください");
+            }
+        })
+        .catch(error => console.error(error))
+
+
 }
 
 function init() {
@@ -118,14 +129,14 @@ function init() {
     wordList = JSON.parse(localStorage.getItem("wordList"));
     if (wordList == null) {
         wordList = [];
-    }else{
+    } else {
         console.log(wordList)
         wordList.forEach((word) => {
             const totoList = new TodoList();
             totoList.viewItem(word.write, word.read, word.id);
         });
     }
-    
+
 
 
 }
