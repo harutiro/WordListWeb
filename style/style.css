@@ -172,6 +172,17 @@ li p {
     text-align: center;
 }
 
+.quiz-number {
+    font-family: 'Kosugi Maru';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 92px;
+    line-height: 128px;
+    /* identical to box height */
+
+    text-align: center;
+}
+
 .quiz-ans-image {
     width: 300px;
     height: 300px;

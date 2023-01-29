@@ -20,6 +20,10 @@
     <!-- myJS -->
     <script type="text/javascript" src="quiz.js"></script>
 
+    <!-- axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
 </head>
 
 <body onload="init();" class="min-vh-100">
@@ -49,11 +53,11 @@
         </aside>
 
         <div class="todo-list w-100 h-100 card p-5 mt-3 mb-3">
-            <image class="quiz-ans-image" src="img/false.png"></image>
+            <image id="quiz-ans-image" class="quiz-ans-image" src="img/false.png"></image>
 
-            <div class="quiz-text">
-                <p id="question-number">Q1</p>
-                <p id="question-text">apple</p>
+            <div>
+                <p id="question-number" class="quiz-number">Q1</p>
+                <p id="question-text" class="quiz-text">apple</p>
             </div>
 
             <div class="text-center">
