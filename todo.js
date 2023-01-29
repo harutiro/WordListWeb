@@ -38,13 +38,6 @@ class TodoList {
         editIconElm.classList.add('fa', 'icon', 'fa-edit');
         editIconElm.style.display = "none";
 
-        // 完了ボタンクリック
-        // TODO: 完了ボタンを押した時の処理
-        // editButtonElm.addEventListener('click', (e) => {
-        //     this.deleteItem(e.srcElement.parentNode, this.DOM.incomplete);
-        //     this.addCompleteItem(text);
-        // });
-
         // 削除ボタンクリック
         deleteButtonElm.addEventListener('click', (e) => {
             const confirmation = confirm("タスクを削除しても良いですか？");
