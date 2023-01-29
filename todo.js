@@ -133,6 +133,14 @@ function init() {
         });
     }
 
+    document.querySelector("#go-to-quiz-button").addEventListener('click', () => {
+        if(wordList.length < 1){
+            alert("問題を追加してください");
+            return
+        }
+        window.location.href = "quiz.html";
+    });
+
 
 
 }
