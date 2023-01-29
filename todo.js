@@ -30,10 +30,13 @@ class TodoList {
         pReadElm.innerText = read;
         deleteButtonElm.classList.add('btn', 'icon-button', 'position-absolute', 'start-0', 'm-2');
         deleteIconElm.classList.add('fa', 'icon', 'fa-trash');
-        editButtonElm.classList.add('btn', 'icon-button', 'position-absolute', 'end-0', 'm-2');
-        editIconElm.classList.add('fa', 'icon', 'fa-edit');
         idElm.innerText = id;
         idElm.style.display = "none";
+
+        //TODO: 編集機能を追加する
+        editButtonElm.classList.add('btn', 'icon-button', 'position-absolute', 'end-0', 'm-2');
+        editIconElm.classList.add('fa', 'icon', 'fa-edit');
+        editIconElm.style.display = "none";
 
         // 完了ボタンクリック
         // TODO: 完了ボタンを押した時の処理
